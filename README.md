@@ -1,9 +1,11 @@
 # Array dan String
 
-## Konsep Dasar Array
+# Array
+
 Adalah kumpulan data bertipe sama yang menggunakan nama sama. Dengan menggunakan array, sejumlah variabel dapat memakai nama yang sama. Antara satu variabel dengan variabel lain di dalam array dibedakan berdasarkan indexnya.
 
-### Array Satu Dimensi
+## Array Satu Dimensi
+
 Merupakan kumpulan data yang bernama sama dengan pembeda sebuah indeks. Contoh penggunaan array satu dimensi :
 ```c
 int main () {
@@ -60,7 +62,8 @@ int main () {
 }
 ```
 
-### Array Multidimensi
+## Array Multidimensi
+
 Array Multidimensi adalah array yang dapat menampung lebih dari satu array. Apabila array satu dimensi hanya memiliki sebuah index, array multidimensi memiliki dua atau lebih index untuk mengakses seluruh elemen dalam array tersebut. 
 Contoh program dengan array dua dimensi:
 ```c
@@ -78,7 +81,8 @@ int main () {
 ```
 Apabila program diatas dibuat dengan menggunakan array satu dimensi, maka setiap baris pada matriks tersebut harus dideklarasikan sebagai variabel yang berbeda (misal: matriks1[100], matriks2[100], matriks3[100], dst). Tentunya hal ini akan sangat sulit diimplementasikan ditambah lagi apabila baris pada matriks ditentukan oleh user yang menggunakan program dan jumlah baris tersebut sangat besar.
 
-## Konsep Dasar String
+# String
+
 String adalah tipe data yang menyimpan kumpulan karakter/simbol. Dalam bahasa pemrograman C, suatu string dideklarasikan sebagai array yang bertipe char.
 
 Contoh pendeklarasian string (1):
@@ -154,6 +158,7 @@ int main () {
 String yang dibaca dengan mengunakan scanf atau gets akan secara otomatis memiliki null character di akhir stringnya.
 
 ## Fungsi-Fungsi String
+
 Dalam bahasa pemrograman C, terdapat library yang dibuat dengan tujuan memudahkan pengguna dalam mengolah string. Library tersebut tersimpan dalam string.h, oleh karena itu, untuk mengakses library ini, diperlukan tambahan, yaitu:
 #include <string.h>
 Berikut adalah fungsi-fungsi yang dibagi berdasarkan kegunaannya dalam mengolah sebuah string (diambil dari www.cplusplus.com):
