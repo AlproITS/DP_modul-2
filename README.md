@@ -49,7 +49,7 @@ int main ()
   
   printf("%d %d\n", a[0], a[1]);
   
-  return 0;
+	return 0;
 
 }
 ```
@@ -327,7 +327,7 @@ Berikut adalah contoh penggunaan fungsi ini dalam kode progam:
 
 int main () {
   
-	char a[] = "Halo";
+    char a[] = "Halo";
 	char b[] = "Hai";
 	char c[] = "Halo;
 	
