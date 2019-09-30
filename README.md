@@ -2,17 +2,47 @@
 
 # Array
 
-Adalah kumpulan data bertipe sama yang menggunakan nama sama. Dengan menggunakan array, sejumlah variabel dapat memakai nama yang sama. Antara satu variabel dengan variabel lain di dalam array dibedakan berdasarkan indexnya.
+## Pengenalan Array
 
-## Array Satu Dimensi
+Array merupakan jenis struktur data yang menampung elemen betipe data sama secara sekuensial dengan ukuran (kapasitas) yang tetap (fixed-size). Bayangkanlah sebuah array sebagai sekumpulan elemen sejenis yang disusun secara berurutan pada satu identifier (nama).
 
-Merupakan kumpulan data yang bernama sama dengan pembeda sebuah indeks. Contoh penggunaan array satu dimensi :
+<!-- ## Array Satu Dimensi -->
+
+## Deklarasi Array
+
+Array juga sama seperti variabel, perlu dideklarasikan terlebih dahulu sebelum bisa digunakan. Deklarasi array sama seperti variabel, hanya saja saat pendeklarasiannya perlu dituliskan ukurannya.
+
+```
+tipe_data identifier_array[size];
+```
+
+## Inisialisasi Array
+
+Kita juga bisa menginisialisasi elemen-elemen pada array setelah dideklarasikan. Sintaksnya adalah seperti berikut.
+
+```
+tipe_data identifier_array[size] = {elem1, elem2, elem3, ....}
+```
+
+## Mengakses Array
+
+Seperti yang telah dijelaskan sebelumnya, array disimpan secara sekuensial (pada blok memori secara berurutan). Lalu bagaimana kita mengakses tiap elemennya? Pengaksesan elemen pada array dilakukan dengan menuliskan identifier arraynya lalu digabung dengan menggunakan operator subscript `[]` dengan menyertakan indeks didalamnya.
+
+![akses_array](img/Array_access.png)
+
+Indeks pada array menggunakan zero-based index, yang artinya elemen pertama pada array ditunjukkan oleh indeks ke 0 (bukan ke 1) dan elemen terakhir ditunjukkan oleh indeks ke N-1 (misal N adalah panjang array).
+Elemen-elemen pada array dapat diperlakukan sama seperti halnya variabel. Kita dapat melakukan assignment, operasi aritmatika, dan lain-lain.
+
+
+Contoh :
+
 ```c
-int main () {
+int main () 
+{
 
   int a[10]; //Deklarasi Array
   
-  int b[10] = {}; //Deklarasi Array Kosong
+  int b[5] = {1, 2, 3, 4, 5}; //Inisialisasi Array
   
   a[0] = 50;
   a[1] = 20;
@@ -23,9 +53,8 @@ int main () {
 
 }
 ```
-Array pertama kali dideklarasikan seperti halnya variabel biasa, tetapi dengan kapasitas di dalam kurung siku, isi array yang bisa diakses adalah antara 0 sampai kapasitas-1, jadi jika mendeklarasikan array berkapasitas 10, indeks yang bisa diakses hanya indeks 0 sampai 9. Kemudian assign dan akses isi array sama dengan variabel biasa, tetapi menggunakan indeks.
 
-Mengapa perlu array? Andaikan kita membutuhkan 1000 inputan data, kita tidak perlu membuat deklarasi variabel a1 hinga a1000, kita cukup menuliskan 1 variabel a dengan tipe array berkapasitas 1000.
+Mengapa kita perlu array? Andaikan kita membutuhkan 1000 inputan data, kita tidak perlu membuat deklarasi variabel berjumlah 1000, misalkan variabel a1 hinga a1000. Namun, kita cukup menuliskan 1 identifier array berkapasitas 1000.
 
 Contoh program tanpa array:
 ```c
@@ -49,59 +78,94 @@ Bayangkan kita tidak hanya memasukkan 5 data, melainkan 1000 data, bagaimana kit
 
 Contoh program menggunakan array:
 ```c
-int main () {
+int main () 
+{
+	int a[5], i; 
+	for(i = 0; i < 5; i++) {
+		scanf("%d", &a[i]); //Input array
+	}
 
-  int a[5], i;
-  
-  for(i = 0; i < 5; i++) scanf("%d", &a[i]); //Input array
-  
-  for(i = 0; i < 5; i++) prinf("Bilangan ke-%d adalah %d\n", i+1, a[i]; // Output array
-  
-  return 0;
+	for(i = 0; i < 5; i++) {
+		prinf("Bilangan ke-%d adalah %d\n", i+1, a[i]; // Output array
+	}
+
+	return 0;
 
 }
 ```
+## Dimensi Array
 
-## Array Multidimensi
+### Array Satu Dimensi
 
-Array Multidimensi adalah array yang dapat menampung lebih dari satu array. Apabila array satu dimensi hanya memiliki sebuah index, array multidimensi memiliki dua atau lebih index untuk mengakses seluruh elemen dalam array tersebut. 
-Contoh program dengan array dua dimensi:
+Sebuah array dikatan berdimensi satu apabila tiap elemennya hanya menyimpan satu data/objek. Contoh-contoh pada penjelasan sebelumnya merupakan array satu dimensi.
+
+Contoh array satu dimensi :
+
 ```c
-int main () {
-
-  int matriks[10][10];
-  
-  matriks[2][3] = 100;
-  
-  printf("%d\n", matriks[2][3]);
-  
-  return 0;
-
+int main()
+{
+	int arr[5];
+	arr[0] = 4;
+	arr[1] = 2;
+	arr[2] = 3;
+	return 0;
 }
 ```
-Apabila program diatas dibuat dengan menggunakan array satu dimensi, maka setiap baris pada matriks tersebut harus dideklarasikan sebagai variabel yang berbeda (misal: matriks1[100], matriks2[100], matriks3[100], dst). Tentunya hal ini akan sangat sulit diimplementasikan ditambah lagi apabila baris pada matriks ditentukan oleh user yang menggunakan program dan jumlah baris tersebut sangat besar.
+
+Jika diilustrasikan, maka array tersebut akan tampak seperti di bawah.
+
+![array-satu-dimens](img/1D_Array.png)
+
+### Array Multidimensi
+
+Sebuah array dikatakan multidimensi apabila tiap elemen array  menampung array lainnya. Apabila array satu dimensi hanya memiliki sebuah index, array multidimensi memiliki dua atau lebih index untuk mengakses elemen dalam array tersebut. 
+
+Cara deklarasinya pun berbeda dari array satu dimensi. Kita memerlukan N buah kurung siku untuk membuat array dengan N-dimensi.
+
+Berikut adalah contoh program dengan array dua dimensi:
+```c
+int main () 
+{
+	int matriks[5][6];
+	matriks[2][3] = 100;
+	matriks[1][4] = 200;
+	return 0;
+}
+```
+
+Apabila diilustrasikan, bentuk array dua dimensi layaknya baris dan kolom, seperti gambar di bawah.
+
+![array-dua-dimensi](img/2D_Array.png)
+
+Selain bentuk dua dimensi, kita dapat membuat array hingga N-dimensi, sesuai kebutuhan.
 
 # String
 
-String adalah tipe data yang menyimpan kumpulan karakter/simbol. Dalam bahasa pemrograman C, suatu string dideklarasikan sebagai array yang bertipe char.
+## Pengenalan String
 
-Contoh pendeklarasian string (1):
+Secara umum, string merupakan kumpulan dari satu atau lebih karakter. Spesifik pada bahasa C, string didefinisikan sebagai kumpulan karakter yang diakhiri oleh karakter null (`'\0'`).
+
+Misalkan string `"Dasar"`, pada bahasa C direpresentasikan sebagai kumpulan karakter `'D'`, `'a'`, `'s'`, `'a'`, `'r'`, dan `'\0'`.
+
+## Representasi String
+
+Pada bahasa C, string direpresentasikan oleh array bertipe `char`.
+Contoh pendeklarasian string:
 ```c
 #include <stdio.h>
 
-int main () {
-  
-  char array[] = "Halo";
-  
-  return 0;
+int main () 
+{  
+	char str[] = "Halo"; 
+	return 0;
 
 }
 ```
 
-Contoh di atas akan mendeklarasikan string bernama array dengan kapasitas 5 karakter, di mana array[0] = 'H', array[1] = 'a', array[2] = 'l', array[3] = 'o', dan array[4] = '\0'.
-Perhatikan bahwa array[4] berisi karakter '\0' (null character), padahal dalam konstanta string di atas tidak ada karakter tersebut. 
+Contoh di atas akan mendeklarasikan string bernama str dengan kapasitas 5 karakter, di mana `str[0] = 'H'`, `str[1] = 'a'`, `str[2] = 'l'`, `str[3] = 'o'`, dan `str[4] = '\0'`.
+Perhatikan bahwa str[4] berisi karakter '\0' (null character), walaupun dalam literal string di atas tidak ada karakter tersebut. 
 
-Dalam bahasa C, null character digunakan untuk menandakan akhir dari sebuah string.
+Dalam bahasa C, karakter null digunakan untuk menandakan akhir dari sebuah string.
 
 Contoh pendeklarasian string (2):
 ```c
@@ -118,7 +182,7 @@ int main () {
 
 Contoh di atas akan mendeklarasikan string bernama array yang dapat menampung maksimal 10 karakter, termasuk null character.
 
-Untuk menerima inputan string dari user, kita dapat menggunakan scanf atau gets. Perintah scanf akan membaca inputan string dari user dan berhenti ketika ada spasi, enter (newline) ataupun interupsi dari pengguna. Sedangkan gets akan membaca satu baris kumpulan karakter hingga enter atau interupsi dari pengguna.
+Untuk menerima input string dari user, kita dapat menggunakan scanf atau gets. Perintah scanf akan membaca inputan string dari user dan berhenti ketika ada whitespace ataupun interupsi dari pengguna. Sedangkan gets akan membaca satu baris kumpulan karakter hingga enter atau interupsi dari pengguna.
 
 Contoh source code penggunaan scanf untuk membaca string:
 ```c
@@ -126,14 +190,13 @@ Contoh source code penggunaan scanf untuk membaca string:
 
 int main () {
   
-  char array[10];
-  while(true)
-  {
-    scanf("%s", arr);
-    
-    printf("-- %s\n", arr);
-  }
-  return 0;
+	char array[10];
+	while(true)
+	{
+		scanf("%s", arr);
+		printf("-- %s\n", arr);
+	}
+	return 0;
 
 }
 ```
@@ -144,23 +207,27 @@ Contoh penggunaan gets untuk membaca string:
 
 int main () {
   
-  char array[100];
-  while(true)
-  {
-    gets(arr);
-    
-    printf("-- %s\n", arr);
-  }
+	char array[100];
+	while(true)
+	{
+		gets(arr);
+		
+		printf("-- %s\n", arr);
+	}
   return 0;
 
 }
 ```
-String yang dibaca dengan mengunakan scanf atau gets akan secara otomatis memiliki null character di akhir stringnya.
+String yang dibaca dengan mengunakan scanf atau gets akan secara otomatis memiliki null character di akhir.
 
 ## Fungsi-Fungsi String
 
-Dalam bahasa pemrograman C, terdapat library yang dibuat dengan tujuan memudahkan pengguna dalam mengolah string. Library tersebut tersimpan dalam string.h, oleh karena itu, untuk mengakses library ini, diperlukan tambahan, yaitu:
+Dalam bahasa pemrograman C, terdapat library yang dibuat dengan tujuan memudahkan pengguna dalam mengolah string. Library tersebut tersimpan dalam `<string.h>`, oleh karena itu, untuk mengakses library ini, diperlukan tambahan, yaitu:
+
+```c
 #include <string.h>
+```
+
 Berikut adalah fungsi-fungsi yang dibagi berdasarkan kegunaannya dalam mengolah sebuah string (diambil dari www.cplusplus.com):
 - Copying :
   + memcpy (Copy block of memory)
@@ -190,6 +257,8 @@ Berikut adalah fungsi-fungsi yang dibagi berdasarkan kegunaannya dalam mengolah 
   + strerror (Get pointer to error message string)
   + strlen (Get string length)
 
+Berikut adalah beberapa fungsi dan penjelasannya.
+
 ### Fungsi strcpy 
 ```c
 char * strcpy ( char * destination, const char * source );
@@ -202,15 +271,15 @@ Contoh penggunaan dalam kode program:
 
 int main () {
   
-  char a[] = "Halo";
-  char b[10];
-  
-  // Copy string a ke string b
-  strcpy(b, a);
-  
-  printf("%s\n", b);
-  
-  return 0;
+	char a[] = "Halo";
+	char b[10];
+	
+	// Copy string a ke string b
+	strcpy(b, a);
+	
+	printf("%s\n", b);
+	
+	return 0;
 
 }
 ```
@@ -228,19 +297,19 @@ Contoh penggunaan dalam kode program:
 
 int main () {
   
-  char a[] = "Halo";
-  char b[] = " Kawan";
-  char c[20];
-  
-  // Copy string a ke string b
-  strcpy(c, a);
-  
-  // Tempelkan string b ke akhir string c
-  strcat(c, b);
-  
-  printf("%s\n", c);
-  
-  return 0;
+	char a[] = "Halo";
+	char b[] = " Kawan";
+	char c[20];
+	
+	// Copy string a ke string b
+	strcpy(c, a);
+	
+	// Tempelkan string b ke akhir string c
+	strcat(c, b);
+	
+	printf("%s\n", c);
+	
+	return 0;
 
 }
 ```
@@ -258,17 +327,17 @@ Berikut adalah contoh penggunaan fungsi ini dalam kode progam:
 
 int main () {
   
-  char a[] = "Halo";
-  char b[] = "Hai";
-  char c[] = "Halo;
-  
-  if(strcmp(a, b) == 0) printf("String a sama dengan b\n");
-  else printf("String a tidak sama dengan b\n");
-  
-  if(strcmp(a, c) == 0) printf("String a sama dengan c\n");
-  else printf("String a tidak sama dengan c\n");
-  
-  return 0;
+	char a[] = "Halo";
+	char b[] = "Hai";
+	char c[] = "Halo;
+	
+	if(strcmp(a, b) == 0) printf("String a sama dengan b\n");
+	else printf("String a tidak sama dengan b\n");
+	
+	if(strcmp(a, c) == 0) printf("String a sama dengan c\n");
+	else printf("String a tidak sama dengan c\n");
+	
+	return 0;
 
 }
 ```
@@ -284,16 +353,16 @@ Fungsi strlen digunakan untuk mengetahui panjang dari sebuah string.
 
 int main () {
   
-  char a[] = "Halo";
-  
-  printf("Panjang string a adalah %d\n", strlen(a));
-  
-  return 0;
+	char a[] = "Halo";
+	
+	printf("Panjang string a adalah %d\n", strlen(a));
+	
+	return 0;
 
 }
 ```
 
-## Soal Latihan
+# Soal Latihan
 
 ### Soal 1
 
