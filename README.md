@@ -207,7 +207,7 @@ Contoh penggunaan gets untuk membaca string:
 
 int main () {
   
-	char array[100];
+	char arr[100];
 	while(true)
 	{
 		gets(arr);
